@@ -1,6 +1,7 @@
 import numpy as np
 import imp
 from keras.utils import to_categorical
+from PIL import Image
 
 class VotingModel(object):
 
@@ -69,15 +70,13 @@ def ensemble(models, model_input):
 # x_test64 = np.load("../../x_test.npy")
 t = np.argmax(y_test, 1)
 
-
 def resize(data_set):
     X_temp = []
-    import scipy
     for i in range(data_set.shape[0]):
-        resized = scipy.misc.imresize(data_set[i], (64, 64))
-        X_temp.append(resized)
-    X_temp = np.array(X_temp, dtype=np.float32) / 255.
-    return X_temp
+        img = Image.fromarray((data_set[i] * 255).astype(np.uint8))
+        img = img.resize((64, 64), Image.BILINEAR)
+        X_temp.append(np.asarray(img, dtype=np.float32) / 255.)
+    return np.array(X_temp)
 
 x_test64 = resize(x_test)
 # x_test64 = np.load("x_test.npy")

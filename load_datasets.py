@@ -1,5 +1,8 @@
 from keras.utils import to_categorical
 import numpy as np
+import os
+from PIL import Image
+
 
 def load_cifar10():
     from keras.datasets import cifar10
@@ -69,7 +72,7 @@ def load_svhn():
 
 
 def get_annotations_map():
-    valAnnotationsPath = 'tiny_imagenet/tiny-imagenet-200/val/val_annotations.txt'
+    valAnnotationsPath = './datasets/tiny_imagenet/tiny-imagenet-200/val/val_annotations.txt'
     valAnnotationsFile = open(valAnnotationsPath, 'r')
     valAnnotationsContents = valAnnotationsFile.read()
     valAnnotations = {}
@@ -142,3 +145,5 @@ def resize(data_set, size):
         X_temp.append(resized)
     X_temp = np.array(X_temp, dtype=np.float32) / 255.
     return X_temp
+
+# print(load_tiny_imagenet('./datasets/tiny_imagenet/tiny-imagenet-200', 200))

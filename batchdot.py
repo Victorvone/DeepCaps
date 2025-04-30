@@ -3,7 +3,7 @@ from tensorflow.python.ops import array_ops
 from tensorflow.python.ops import math_ops
 
 
-#own_batch_dot = batch_dot  # force standard implementation 
+# own_batch_dot = batch_dot  # force standard implementation 
 
 # import of batch_dot operation from TF 1.13
 # https://github.com/tensorflow/tensorflow/blob/v1.13.1/tensorflow/python/keras/backend.py
